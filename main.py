@@ -4,7 +4,8 @@ from sklearn.metrics import make_scorer, roc_auc_score
 from sklearn.model_selection import KFold, GridSearchCV, train_test_split
 from sklearn.pipeline import make_union
 
-from model.classifiers.linear import linear, linear_name, linear_params_grid
+# from model.classifiers.linear import linear, linear_name, linear_params_grid
+from model.classifiers.decision_tree import tree, tree_name, tree_params_grid
 from model.load import load_data_train, load_data_test
 from model.save import save_model, save_score, save_prediction
 from model.transform import data_columns, target_columns, feature_pre_processor, feature_columns
@@ -34,8 +35,10 @@ def model_validate(name, model, score, X, y):
     # print('Target y_valid:', y_valid)
     # print('Model predict:', model.predict(x_valid))
     # print('Model predict_proba:', model.predict_proba(x_valid))
-    # print('Model predict_proba 0:', list(model.predict_proba(x_valid)[:, 0].astype(np.float32).reshape(1, -1).flatten()))
-    # print('Model predict_proba 1:', list(model.predict_proba(x_valid)[:, 1].astype(np.float32).reshape(1, -1).flatten()))
+    # print('Model predict_proba 0:',
+    # list(model.predict_proba(x_valid)[:, 0].astype(np.float32).reshape(1, -1).flatten()))
+    # print('Model predict_proba 1:',
+    # list(model.predict_proba(x_valid)[:, 1].astype(np.float32).reshape(1, -1).flatten()))
     y_predict = model.predict(x_valid).astype(np.int32).reshape(1, -1).flatten()
     y_predict_proba = model.predict_proba(x_valid)[:, 1].astype(np.int32).reshape(1, -1).flatten()
     model_score = score(list(y_valid), list(y_predict))
@@ -84,7 +87,7 @@ def main():
         print('X_valid: {0} of {1}'.format(X_valid.shape, data_train.dtype))
 
     with timer('data fit'):
-        name, model, params_grid = linear_name, linear, linear_params_grid
+        name, model, params_grid = tree_name, tree, tree_params_grid
         # name, model, params_grid = gbc_name, gbc, gbc_params_grid
         score = make_scorer(roc_auc_score)
         best_model = model_fit(name=name, model=model, params_grid=params_grid, score=score, X=X_train, y=y_train)
