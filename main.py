@@ -20,7 +20,9 @@ from utils.time import timer
 def model_fit(name, model, params_grid, score, X, y):
     x_train, y_train = X, y
     cross_val = KFold(n_splits=10, shuffle=True, random_state=42)
-    grid_search = GridSearchCV(estimator=model, param_grid=params_grid, scoring=score, cv=cross_val, verbose=1)
+    grid_search = GridSearchCV(estimator=model, param_grid=params_grid,
+                               scoring=score, cv=cross_val,
+                               verbose=1, n_jobs=-1)
 
     grid_search.fit(x_train, y_train)
     print('GridSearchCV ' + name + ' best score:', grid_search.best_score_)
