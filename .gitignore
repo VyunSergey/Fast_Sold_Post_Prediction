@@ -212,3 +212,5 @@ utils/__pycache__/
 data/sample_submission.csv
 data/test_no_label.tsv
 data/train.tsv
+
+result/predictions/
