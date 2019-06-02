@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-load_data_path = 'C:/Users/Sergey/PycharmProjects/KaggleSalePrediction/data'
+load_data_path = 'C:/Users/Sergey/PycharmProjects/Fast_Sold_Post_Prediction/data'
 
 
 def print_path_data(path: str):

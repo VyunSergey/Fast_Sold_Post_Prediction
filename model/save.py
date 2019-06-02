@@ -8,9 +8,9 @@ import pandas as pd
 from utils.lists import list_to_str
 from utils.strings import regexp_replace
 
-save_model_path = 'C:/Users/Sergey/PycharmProjects/KaggleSalePrediction/result/models'
-save_score_path = 'C:/Users/Sergey/PycharmProjects/KaggleSalePrediction/result/scores'
-save_prediction_path = 'C:/Users/Sergey/PycharmProjects/KaggleSalePrediction/result/predictions'
+save_model_path = 'C:/Users/Sergey/PycharmProjects/Fast_Sold_Post_Prediction/result/models'
+save_score_path = 'C:/Users/Sergey/PycharmProjects/Fast_Sold_Post_Prediction/result/scores'
+save_prediction_path = 'C:/Users/Sergey/PycharmProjects/Fast_Sold_Post_Prediction/result/predictions'
 
 
 def print_path_data(desc: str, path: str):
