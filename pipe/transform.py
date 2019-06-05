@@ -31,11 +31,11 @@ def vector_tf_idf_transformer(feature: str):
 
 def tf_idf_transformer(feature: str, max_features_len: int):
     return feature_single_transformer(feature,
-                                      TfidfVec(max_features=max_features_len, token_pattern='\w+',
+                                      TfidfVec(max_features=max_features_len, token_pattern='\\w+',
                                                ngram_range=(1, 1)))
 
 
 def tf_idf_ngram_transformer(feature: str, max_features_len: int, ngram_rng: tuple):
     return feature_single_transformer(feature,
-                                      TfidfVec(max_features=max_features_len, token_pattern='\w+',
+                                      TfidfVec(max_features=max_features_len, token_pattern='\\w+',
                                                ngram_range=ngram_rng))

@@ -5,12 +5,12 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import FunctionTransformer
 
 
-def feature_single_getter(feature: str) -> Pipeline:
-    return make_pipeline(FunctionTransformer(itemgetter(feature), validate=False))
+def feature_single_getter(feature: str):
+    return FunctionTransformer(itemgetter(feature), validate=False)
 
 
-def features_getter(features: List) -> Pipeline:
-    return make_pipeline(FunctionTransformer(itemgetter(features), validate=False))
+def features_getter(features: List):
+    return FunctionTransformer(itemgetter(features), validate=False)
 
 
 def feature_single_transformer(feature: str, *vec) -> Pipeline:
