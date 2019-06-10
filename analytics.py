@@ -12,11 +12,11 @@ from utils.time import timer
 
 def analyze(name: str, model, feature_names: List):
     feature_imp = model.feature_importances_
-    feature_data = np.array(sorted(zip(feature_names, feature_imp), key=lambda x: x[1]))
-    print('Model ' + name + ' feature importance shape:', feature_data.shape)
-    print('Model ' + name + ' feature importance top 10:', feature_data[:10])
-    print('Model ' + name + ' feature importance zero count:', len([x for x in feature_data if x[1] == 0]))
-    print('Model ' + name + ' feature importance:', feature_data)
+    # feature_data = np.array(sorted(zip(feature_names, feature_imp), key=lambda x: x[1]))
+    print('Model ' + name + ' feature importance shape:', feature_imp.shape)
+    print('Model ' + name + ' feature importance top 10:', sorted(feature_imp)[:10])
+    print('Model ' + name + ' feature importance zero count:', len([x for x in feature_imp if x == 0]))
+    print('Model ' + name + ' feature importance:', feature_imp)
 
 
 if __name__ == "__main__":
@@ -49,10 +49,11 @@ if __name__ == "__main__":
         data_train1 = data_processor1.fit_transform(data_train_prep).astype(np.float32)
 
     with timer('model loading'):
-        model_name = 'DecisionTreeClassifier_Sun_Jun__2_07-48-57_2019'
+        model_name = 'GradientBoostingClassifier_Mon_Jun__3_20-36-37_2019'
         model = load_model(model_name)
         print('data_processor: ', data_processor1)
         # feature_names = data_processor.get_feature_names()
+        feature_names = []
 
-    # with timer('model analyzing'):
-        # analyze(model_name, model, feature_names)
+    with timer('model analyzing'):
+        analyze(model_name, model, feature_names)
